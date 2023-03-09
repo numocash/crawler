@@ -34,7 +34,7 @@ library NumoenSwapLibrary {
         uint256 c = (scale1 * scale1) / 4;
         uint256 d = upperBound * upperBound;
 
-        amount0 = FullMath.mulDivRoundingUp((c + d) - b, liquidity, 1e36 * token0Scale) - reserve0;
+        amount0 = 1 + FullMath.mulDivRoundingUp((c + d) - b, liquidity, 1e36 * token0Scale) - reserve0;
     }
 
     /// @notice Calculates the amount of token0 received for a given amount of token1
@@ -65,6 +65,6 @@ library NumoenSwapLibrary {
         uint256 c = (scale1 * scale1) / 4;
         uint256 d = upperBound * upperBound;
 
-        amount0 = reserve0 - FullMath.mulDivRoundingUp((c + d) - b, liquidity, 1e36 * token0Scale);
+        amount0 = reserve0 - FullMath.mulDivRoundingUp((c + d) - b, liquidity, 1e36 * token0Scale) - 1;
     }
 }
