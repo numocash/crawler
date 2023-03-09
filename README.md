@@ -7,11 +7,14 @@
 [license]: https://opensource.org/licenses/MIT
 [license-badge]: https://img.shields.io/badge/License-MIT-blue.svg
 
-A Foundry-based template for developing Solidity smart contracts, with sensible defaults.
+Helper functions for swapping with Numoen PMMP.
 
-## Usage
+## Examples
 
-This is a list of the most frequently needed commands.
+- **SwapRouter.sol:** Facilitates swapping on Numoen PMMP
+- **Arbitrage.sol:** Allows for arbitrage between a Uniswap V2 or V3 style exchange and Numoen PMMP
+
+## Development
 
 ### Build
 
@@ -36,28 +39,6 @@ Compile the contracts:
 ```sh
 $ forge build
 ```
-
-### Coverage
-
-Get a test coverage report:
-
-```sh
-$ forge coverage
-```
-
-### Deploy
-
-Deploy to Anvil:
-
-```sh
-$ forge script script/DeployFoo.s.sol --broadcast --fork-url http://localhost:8545
-```
-
-For this script to work, you need to have a `MNEMONIC` environment variable set to a valid
-[BIP39 mnemonic](https://iancoleman.io/bip39/).
-
-For instructions on how to deploy to a testnet or mainnet, check out the
-[Solidity Scripting](https://book.getfoundry.sh/tutorials/solidity-scripting.html) tutorial.
 
 ### Format
 
