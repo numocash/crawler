@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-only
 pragma solidity ^0.8.0;
 
-import { FullMath } from "./FullMath.sol";
+import { FullMath } from "numoen/libraries/FullMath.sol";
 
 /// @notice Helper functions for swapping with Numoen PMMP
 /// @author Kyle Scott (kyle@numoen.com)
@@ -34,6 +34,7 @@ library NumoenSwapLibrary {
         uint256 c = (scale1 * scale1) / 4;
         uint256 d = upperBound * upperBound;
 
+        // add 1 for any rounding that could occur, cheaper than determing the exact amount
         amount0 = 1 + FullMath.mulDivRoundingUp((c + d) - b, liquidity, 1e36 * token0Scale) - reserve0;
     }
 
@@ -65,6 +66,7 @@ library NumoenSwapLibrary {
         uint256 c = (scale1 * scale1) / 4;
         uint256 d = upperBound * upperBound;
 
+        // subtract 1 for any rounding that could occur, cheaper than determing the exact amount
         amount0 = reserve0 - FullMath.mulDivRoundingUp((c + d) - b, liquidity, 1e36 * token0Scale) - 1;
     }
 }
