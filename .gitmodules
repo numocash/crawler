@@ -2,3 +2,6 @@
   branch = "v1"
   path = "lib/forge-std"
   url = "https://github.com/foundry-rs/forge-std"
+[submodule "lib/contracts-mono"]
+	path = lib/contracts-mono
+	url = https://github.com/numoen/contracts-mono
