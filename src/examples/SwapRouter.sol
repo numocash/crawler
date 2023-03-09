@@ -11,7 +11,7 @@ import { ILendgine } from "numoen/core/interfaces/ILendgine.sol";
 import { LendgineAddress } from "numoen/periphery/libraries/LendgineAddress.sol";
 import { NumoenSwapLibrary } from "../NumoenSwapLibrary.sol";
 
-contract SwapRouter is Multicall, Payment, SelfPermit {
+contract SwapRouter is Multicall, Payment, SelfPermit, ISwapCallback {
     /*//////////////////////////////////////////////////////////////
                                  ERRORS
     //////////////////////////////////////////////////////////////*/
@@ -26,7 +26,7 @@ contract SwapRouter is Multicall, Payment, SelfPermit {
                                 STORAGE
     //////////////////////////////////////////////////////////////*/
 
-    address public immutable factory;
+    address private immutable factory;
 
     /*//////////////////////////////////////////////////////////////
                               CONSTRUCTOR
