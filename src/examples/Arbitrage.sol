@@ -1,10 +1,6 @@
 // SPDX-License-Identifier: GPL-3.0-only
 pragma solidity =0.8.17;
 
-import { Multicall } from "numoen/periphery/Multicall.sol";
-import { Payment } from "numoen/periphery/Payment.sol";
-import { SelfPermit } from "numoen/periphery/SelfPermit.sol";
-
 import { ISwapCallback } from "numoen/core/interfaces/callback/ISwapCallback.sol";
 import { ILendgine } from "numoen/core/interfaces/ILendgine.sol";
 
