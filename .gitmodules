@@ -5,3 +5,6 @@
 [submodule "lib/contracts-mono"]
 	path = lib/contracts-mono
 	url = https://github.com/numoen/contracts-mono
+[submodule "lib/create3-factory"]
+	path = lib/create3-factory
+	url = https://github.com/lifinance/create3-factory
