@@ -29,13 +29,17 @@ library NumoenSwapLibrary {
         returns (uint256 amount0)
     {
         uint256 scale1 = FullMath.mulDiv((reserve1 - amount1) * token1Scale, 1e18, liquidity);
+        uint256 scale1RoundingUp = FullMath.mulDivRoundingUp((reserve1 - amount1) * token1Scale, 1e18, liquidity);
 
         uint256 b = scale1 * upperBound;
-        uint256 c = (scale1 * scale1) / 4;
+        uint256 c = (scale1RoundingUp * scale1RoundingUp) / 4;
         uint256 d = upperBound * upperBound;
 
-        // add 1 for any rounding that could occur, cheaper than determing the exact amount
-        amount0 = 1 + FullMath.mulDivRoundingUp((c + d) - b, liquidity, 1e36 * token0Scale) - reserve0;
+        uint256 a = (c + d) - b;
+        uint256 scale0 = FullMath.mulDivRoundingUp(a, 1, 1e18);
+        uint256 targetR1 = FullMath.mulDivRoundingUp(FullMath.mulDivRoundingUp(scale0, liquidity, 1e18), 1, token0Scale);
+
+        amount0 = targetR1 - reserve0;
     }
 
     /// @notice Calculates the amount of token0 received for a given amount of token1
@@ -61,12 +65,16 @@ library NumoenSwapLibrary {
         returns (uint256 amount0)
     {
         uint256 scale1 = FullMath.mulDiv((reserve1 + amount1) * token1Scale, 1e18, liquidity);
+        uint256 scale1RoundingUp = FullMath.mulDivRoundingUp((reserve1 + amount1) * token1Scale, 1e18, liquidity);
 
         uint256 b = scale1 * upperBound;
-        uint256 c = (scale1 * scale1) / 4;
+        uint256 c = (scale1RoundingUp * scale1RoundingUp) / 4;
         uint256 d = upperBound * upperBound;
 
-        // subtract 1 for any rounding that could occur, cheaper than determing the exact amount
-        amount0 = reserve0 - FullMath.mulDivRoundingUp((c + d) - b, liquidity, 1e36 * token0Scale) - 1;
+        uint256 a = (c + d) - b;
+        uint256 scale0 = FullMath.mulDivRoundingUp(a, 1, 1e18);
+        uint256 targetR1 = FullMath.mulDivRoundingUp(FullMath.mulDivRoundingUp(scale0, liquidity, 1e18), 1, token0Scale);
+
+        amount0 = reserve0 - targetR1;
     }
 }
