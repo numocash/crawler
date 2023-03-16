@@ -29,7 +29,7 @@ library NumoenSwapLibrary {
         returns (uint256 amount0)
     {
         uint256 scale1 = FullMath.mulDiv((reserve1 - amount1) * token1Scale, 1e18, liquidity);
-        uint256 scale1RoundingUp = FullMath.mulDivRoundingUp((reserve1 - amount1) * token1Scale, 1e18, liquidity);
+        uint256 scale1RoundingUp = mulmod((reserve1 - amount1) * token1Scale, 1e18, liquidity) > 0 ? scale1 + 1 : scale1;
 
         uint256 b = scale1 * upperBound;
         uint256 c = (scale1RoundingUp * scale1RoundingUp) / 4;
@@ -65,7 +65,7 @@ library NumoenSwapLibrary {
         returns (uint256 amount0)
     {
         uint256 scale1 = FullMath.mulDiv((reserve1 + amount1) * token1Scale, 1e18, liquidity);
-        uint256 scale1RoundingUp = FullMath.mulDivRoundingUp((reserve1 + amount1) * token1Scale, 1e18, liquidity);
+        uint256 scale1RoundingUp = mulmod((reserve1 + amount1) * token1Scale, 1e18, liquidity) > 0 ? scale1 + 1 : scale1;
 
         uint256 b = scale1 * upperBound;
         uint256 c = (scale1RoundingUp * scale1RoundingUp) / 4;
