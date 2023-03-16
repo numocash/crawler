@@ -57,10 +57,10 @@ contract SwapRouterTest is Test {
     }
 
     function testSwap0To1() external {
-        deal(address(token0), cuh, 1.25e18 + 1);
+        deal(address(token0), cuh, 1.25e18);
 
         vm.prank(cuh);
-        token0.approve(address(swapRouter), 1.25e18 + 1);
+        token0.approve(address(swapRouter), 1.25e18);
 
         vm.prank(cuh);
         uint256 amount0In = swapRouter.swap0To1(
@@ -71,17 +71,17 @@ contract SwapRouterTest is Test {
                 token1Exp: 18,
                 upperBound: 5e18,
                 amount1Out: 1e18,
-                amount0InMax: 1.25e18 + 1,
+                amount0InMax: 1.25e18,
                 recipient: cuh,
                 deadline: block.timestamp
             })
         );
-        assertEq(amount0In, 1.25e18 + 1);
+        assertEq(amount0In, 1.25e18);
 
         assertEq(token0.balanceOf(cuh), 0);
         assertEq(token1.balanceOf(cuh), 1e18);
 
-        assertEq(lendgine.reserve0(), 2.25e18 + 1);
+        assertEq(lendgine.reserve0(), 2.25e18);
         assertEq(lendgine.reserve1(), 7e18);
     }
 
@@ -100,18 +100,18 @@ contract SwapRouterTest is Test {
                 token1Exp: 18,
                 upperBound: 5e18,
                 amount1In: 1e18,
-                amount0OutMin: 0.75e18 - 1,
+                amount0OutMin: 0.75e18,
                 recipient: cuh,
                 deadline: block.timestamp
             })
         );
 
-        assertEq(amount0Out, 0.75e18 - 1);
+        assertEq(amount0Out, 0.75e18);
 
-        assertEq(token0.balanceOf(cuh), 0.75e18 - 1);
+        assertEq(token0.balanceOf(cuh), 0.75e18);
         assertEq(token1.balanceOf(cuh), 0);
 
-        assertEq(lendgine.reserve0(), 0.25e18 + 1);
+        assertEq(lendgine.reserve0(), 0.25e18);
         assertEq(lendgine.reserve1(), 9e18);
     }
 }

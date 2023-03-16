@@ -18,6 +18,12 @@ import { Balance } from "numoen/libraries/Balance.sol";
 
 contract Arbitrage is SwapHelper, ISwapCallback {
     /*//////////////////////////////////////////////////////////////
+                                 ERRORS
+    //////////////////////////////////////////////////////////////*/
+
+    error NotProfitable();
+
+    /*//////////////////////////////////////////////////////////////
                                 STORAGE
     //////////////////////////////////////////////////////////////*/
 
@@ -53,7 +59,7 @@ contract Arbitrage is SwapHelper, ISwapCallback {
         SwapCallbackData memory decoded = abi.decode(data, (SwapCallbackData));
 
         // Swap the output of the Numoen swap on an external exchange
-        swap(
+        uint256 swappedAmount = swap(
             decoded.swapType,
             SwapParams({
                 tokenIn: decoded.tokenIn,
@@ -63,6 +69,8 @@ contract Arbitrage is SwapHelper, ISwapCallback {
             }),
             decoded.swapExtraData
         );
+
+        if (swappedAmount < decoded.amountIn) revert NotProfitable();
 
         // payback numoen for the swap
         SafeTransferLib.safeTransfer(decoded.tokenOut, msg.sender, decoded.amountIn);

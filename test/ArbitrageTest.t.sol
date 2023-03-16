@@ -221,4 +221,62 @@ contract ArbitrageTest is Test {
         assert(token0.balanceOf(address(lendgine)) < 800e18);
         assert(token1.balanceOf(address(lendgine)) > 100e18);
     }
+
+    function testArbitrage0NotProfitable() external {
+        token0 = new MockERC20();
+        token1 = new MockERC20();
+
+        setupNumoen();
+
+        uniswapV2Pair = IUniswapV2Pair(uniswapV2Factory.createPair(address(token0), address(token1)));
+
+        deal(address(token0), address(uniswapV2Pair), 100 ether);
+        deal(address(token1), address(uniswapV2Pair), 100 ether);
+
+        uniswapV2Pair.mint(address(this));
+
+        vm.expectRevert(Arbitrage.NotProfitable.selector);
+        arbitrage.arbitrage0(
+            Arbitrage.ArbitrageParams({
+                token0: address(token0),
+                token1: address(token1),
+                token0Exp: 18,
+                token1Exp: 18,
+                upperBound: 5e18,
+                amount: 1e18,
+                swapType: SwapHelper.SwapType.UniswapV2,
+                swapExtraData: bytes(""),
+                recipient: cuh
+            })
+        );
+    }
+
+    function testArbitrage1NotProfitable() external {
+        token0 = new MockERC20();
+        token1 = new MockERC20();
+
+        setupNumoen();
+
+        uniswapV2Pair = IUniswapV2Pair(uniswapV2Factory.createPair(address(token0), address(token1)));
+
+        deal(address(token0), address(uniswapV2Pair), 100 ether);
+        deal(address(token1), address(uniswapV2Pair), 100 ether);
+
+        uniswapV2Pair.mint(address(this));
+
+        vm.expectRevert(Arbitrage.NotProfitable.selector);
+        arbitrage.arbitrage1(
+            Arbitrage.ArbitrageParams({
+                token0: address(token0),
+                token1: address(token1),
+                token0Exp: 18,
+                token1Exp: 18,
+                upperBound: 5e18,
+                amount: 1e18,
+                swapType: SwapHelper.SwapType.UniswapV2,
+                swapExtraData: bytes(""),
+                recipient: cuh
+            })
+        );
+    }
 }
