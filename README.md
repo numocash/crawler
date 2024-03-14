@@ -1,4 +1,4 @@
-# Swap Library [![Github Actions][gha-badge]][gha] [![Foundry][foundry-badge]][foundry] [![License: MIT][license-badge]][license]
+# Swap Library [![Foundry][foundry-badge]][foundry] [![License: MIT][license-badge]][license]
 
 [gha]: https://github.com/numo-hq/swap-library/actions
 [gha-badge]: https://github.com/numo-hq/swap-library/actions/workflows/ci.yml/badge.svg
