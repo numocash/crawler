@@ -7,11 +7,11 @@
 [license]: https://opensource.org/licenses/MIT
 [license-badge]: https://img.shields.io/badge/License-MIT-blue.svg
 
-Helper functions for swapping with Numoen.
+Helper functions for swapping with Numo.
 
 ## Examples
 
-- **SwapRouter.sol:** Facilitates swapping on Numoen
+- **SwapRouter.sol:** Facilitates swapping on Numo
 - **Arbitrage.sol:** Allows for arbitrage between a Uniswap V2 or V3 style exchange and Numoen
 
 ## Development
