@@ -1,7 +1,7 @@
-# Swap Library [![Github Actions][gha-badge]][gha] [![Foundry][foundry-badge]][foundry] [![License: MIT][license-badge]][license]
+# Swap Library [![Foundry][foundry-badge]][foundry] [![License: MIT][license-badge]][license]
 
-[gha]: https://github.com/numoen/swap-library/actions
-[gha-badge]: https://github.com/Numoen/swap-library/actions/workflows/ci.yml/badge.svg
+[gha]: https://github.com/numo-hq/swap-library/actions
+[gha-badge]: https://github.com/numo-hq/swap-library/actions/workflows/ci.yml/badge.svg
 [foundry]: https://getfoundry.sh/
 [foundry-badge]: https://img.shields.io/badge/Built%20with-Foundry-FFDB1C.svg
 [license]: https://opensource.org/licenses/MIT
@@ -12,7 +12,8 @@ Helper functions for swapping with Numo.
 ## Examples
 
 - **SwapRouter.sol:** Facilitates swapping on Numo
-- **Arbitrage.sol:** Allows for arbitrage between a Uniswap V2 or V3 style exchange and Numoen
+- **Arbitrage.sol:** Allows for arbitrage between a Uniswap V2 or V3 style exchange and Numo
+
 
 ## Development
 
@@ -82,4 +83,4 @@ $ forge test
 
 ## License
 
-[MIT](./LICENSE.md) © Numoen
+[MIT](./LICENSE.md) © Numo
