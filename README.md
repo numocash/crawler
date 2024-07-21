@@ -11,8 +11,9 @@ Helper functions for swapping with Numo.
 
 ## Examples
 
-- **SwapRouter.sol:** Facilitates swapping on PowerMaker
-- **Arbitrage.sol:** Allows for arbitrage between a Uniswap V2 or V3 style exchange and PowerMaker
+- **SwapRouter.sol:** Facilitates swapping on Numo
+- **Arbitrage.sol:** Allows for arbitrage between a Uniswap V2 or V3 style exchange and Numo
+
 
 ## Development
 
